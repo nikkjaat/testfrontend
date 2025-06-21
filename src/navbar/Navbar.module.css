@@ -1,0 +1,24 @@
+.navbar {
+  background-color: rgb(72, 118, 158);
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  /* height: 3em; */
+  align-items: center;
+  padding: 0 1em;
+  z-index: 100;
+}
+
+.loginButton{
+    width: 8em;
+    height: fit-content;
+    padding: .5em;
+    margin-right: 3em;
+    background-color: beige;
+    border: 1px solid #eee;
+    border-radius: .3em;
+}
+
+
