@@ -1,2 +1,9 @@
 [build.environment]
   NODE_VERSION = "20"
+
+
+[build]
+  command = "npm install && npm run build"
+
+[build.environment]
+  GIT_SUBMODULE_STRATEGY = "recursive"
