@@ -154,7 +154,6 @@ export default function Board() {
   const currentBoard = boards.find((b) => b._id === activeBoard) || {
     name: "",
   };
-
   
 
   return (
