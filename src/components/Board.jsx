@@ -15,6 +15,7 @@ export default function Board() {
   const [editBoardName, setEditBoardName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [editingTask, setEditingTask] = useState(null);
 
   const STATUS_LABELS = [
     { label: "To Do", value: "todo" },
@@ -178,6 +179,26 @@ export default function Board() {
     name: "",
   };
 
+  const deleteTask = async (taskId) => {
+    if (!window.confirm("Delete this task?")) return;
+
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      await axios.delete(
+        `${import.meta.env.VITE_API_BACKEND_URL}/tasks/${taskId}`
+      );
+
+      setTasks((prev) => prev.filter((task) => task._id !== taskId));
+    } catch (error) {
+      console.error("Error deleting task:", error);
+      setError("Failed to delete task");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className={styles.appWrapper}>
       <div className={styles.sidebar}>
@@ -237,15 +258,28 @@ export default function Board() {
           </button>
         </div>
 
-        {showForm && (
+        {(showForm || editingTask) && (
           <div className={styles.formOverlay}>
             <TaskForm
               onSave={(task) => {
-                addTask(task);
+                if (editingTask) {
+                  // Update task in state
+                  setTasks((prev) =>
+                    prev.map((t) => (t._id === task._id ? task : t))
+                  );
+                  setEditingTask(null);
+                } else {
+                  // Add new task
+                  setTasks((prev) => [...prev, task]);
+                }
                 setShowForm(false);
               }}
-              onCancel={() => setShowForm(false)}
+              onCancel={() => {
+                setShowForm(false);
+                setEditingTask(null);
+              }}
               boardId={activeBoard}
+              task={editingTask}
             />
           </div>
         )}
@@ -310,6 +344,11 @@ export default function Board() {
               key={statusObj.value}
               title={statusObj.label}
               tasks={getTasksByStatus(statusObj.value)}
+              onEditTask={(task) => {
+                setEditingTask(task);
+                setShowForm(true);
+              }}
+              onDeleteTask={deleteTask}
             />
           ))}
         </div>

@@ -132,109 +132,131 @@
   color: inherit;
 }
 
-
-
 /* Task Form Styles */
 .taskForm {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    width: 500px;
-    max-width: 90%;
-  }
-  
-  .formGroup {
-    margin-bottom: 15px;
-  }
-  
-  .formGroup label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 500;
-  }
-  
-  .formGroup input,
-  .formGroup textarea,
-  .formGroup select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .formGroup textarea {
-    min-height: 80px;
-    resize: vertical;
-  }
-  
-  .formRow {
-    display: flex;
-    gap: 15px;
-  }
-  
-  .formRow .formGroup {
-    flex: 1;
-  }
-  
-  /* Task Card Styles */
-  .taskCard {
-    background: white;
-    border-radius: 4px;
-    padding: 12px;
-    margin-bottom: 10px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  }
-  
-  .taskHeader {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;
-  }
-  
-  .taskHeader h4 {
-    margin: 0;
-    flex-grow: 1;
-  }
-  
-  .taskDescription {
-    color: #555;
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-  }
-  
-  .taskMeta {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.8rem;
-    color: #666;
-  }
-  
-  .priority {
-    padding: 2px 6px;
-    border-radius: 10px;
-    font-size: 0.7rem;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-  
-  .priority.low {
-    background-color: #e8f5e9;
-    color: #2e7d32;
-  }
-  
-  .priority.medium {
-    background-color: #fff8e1;
-    color: #ff8f00;
-  }
-  
-  .priority.high {
-    background-color: #ffebee;
-    color: #c62828;
-  }
-  
-  .assignedTo, .dueDate {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 500px;
+  max-width: 90%;
+}
+
+.formGroup {
+  margin-bottom: 15px;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.formGroup input,
+.formGroup textarea,
+.formGroup select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.formGroup textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.formRow {
+  display: flex;
+  gap: 15px;
+}
+
+.formRow .formGroup {
+  flex: 1;
+}
+
+/* Task Card Styles */
+.taskCard {
+  background: white;
+  border-radius: 4px;
+  padding: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.taskHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.taskHeader h4 {
+  margin: 0;
+  flex-grow: 1;
+}
+
+.taskDescription {
+  color: #555;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.taskMeta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.priority {
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.priority.low {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.priority.medium {
+  background-color: #fff8e1;
+  color: #ff8f00;
+}
+
+.priority.high {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.assignedTo,
+.dueDate {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.updateBtn {
+  background-color: #4674ca !important;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+  margin:  10px 10px 0 0;
+}
+
+.deleteBtn {
+  background-color: #ff5252;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
