@@ -2,13 +2,13 @@
 import React from "react";
 import styles from "./Board.module.css";
 
-export default function Column({ title, tasks }) {
+export default function Column({ title, tasks, key }) {
   return (
     <div className={styles.column}>
       <h3>{title}</h3>
       <div className={styles.tasksList}>
         {tasks.map((task) => (
-          <div key={task.id} className={styles.taskCard}>
+          <div key={task._id} className={styles.taskCard}>
             <div className={styles.taskHeader}>
               <span
                 className={`${styles.priority} ${

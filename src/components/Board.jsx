@@ -16,6 +16,29 @@ export default function Board() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const STATUS_LABELS = [
+    { label: "To Do", value: "todo" },
+    { label: "In Progress", value: "in-progress" },
+    { label: "Done", value: "done" },
+  ];
+
+  const fetchTasks = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_BACKEND_URL}/tasks`
+      );
+      console.log(response);
+      setTasks(response.data.tasks || []);
+    } catch (err) {
+      console.error("Error fetching tasks:", err);
+    }
+  };
+
+  // Call when component mounts or boardId changes
+  useEffect(() => {
+    fetchTasks();
+  }, []);
+
   const addTask = (task) => {
     setTasks((prev) => [...prev, task]);
   };
@@ -145,16 +168,15 @@ export default function Board() {
     }
   };
 
-  const getTasksByStatus = (status) => {
+  const getTasksByStatus = (statusValue) => {
     return tasks.filter(
-      (task) => task.status === status && task.boardId === activeBoard
+      (task) => task.status === statusValue && task.boardId === activeBoard
     );
   };
 
   const currentBoard = boards.find((b) => b._id === activeBoard) || {
     name: "",
   };
-  
 
   return (
     <div className={styles.appWrapper}>
@@ -283,8 +305,12 @@ export default function Board() {
         )}
 
         <div className={styles.board}>
-          {["To Do", "In Progress", "Done"].map((status, idx) => (
-            <Column key={idx} title={status} tasks={getTasksByStatus(status)} />
+          {STATUS_LABELS.map((statusObj, idx) => (
+            <Column
+              key={statusObj.value}
+              title={statusObj.label}
+              tasks={getTasksByStatus(statusObj.value)}
+            />
           ))}
         </div>
       </div>

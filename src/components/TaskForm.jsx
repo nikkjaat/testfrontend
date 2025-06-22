@@ -24,26 +24,6 @@ export default function TaskForm({ onSave, onCancel, boardId }) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const [tasks, setTasks] = useState([]); // 👈 for displaying tasks
-
-  // Fetch tasks for the given board
-  const fetchTasks = async () => {
-    try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_BACKEND_URL}/tasks`
-      );
-      console.log(response);
-      setTasks(response.data.tasks || []);
-    } catch (err) {
-      console.error("Error fetching tasks:", err);
-    }
-  };
-
-  // Call when component mounts or boardId changes
-  useEffect(() => {
-    fetchTasks();
-  }, []);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!title.trim()) {
@@ -82,7 +62,7 @@ export default function TaskForm({ onSave, onCancel, boardId }) {
       setDueDate("");
 
       // Refetch updated list
-      fetchTasks();
+     
     } catch (error) {
       console.error("Error creating task:", error);
       setError("Failed to create task");
@@ -187,32 +167,6 @@ export default function TaskForm({ onSave, onCancel, boardId }) {
           </button>
         </div>
       </form>
-
-      {/* 👇 TASK LIST RENDERING */}
-      <div className={styles.taskList}>
-        <h3>Tasks in this Board</h3>
-        {tasks.length === 0 ? (
-          <p>No tasks yet.</p>
-        ) : (
-          <ul>
-            {tasks.map((task) => (
-              <li key={task._id} className={styles.taskItem}>
-                <strong>{task.title}</strong> — {task.status}, {task.priority}
-                <br />
-                <small>Assigned to: {task.assignedTo || "N/A"}</small>
-                {task.dueDate && (
-                  <>
-                    <br />
-                    <small>
-                      Due: {new Date(task.dueDate).toLocaleDateString()}
-                    </small>
-                  </>
-                )}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
     </>
   );
 }
