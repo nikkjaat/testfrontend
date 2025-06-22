@@ -1,9 +1,11 @@
 [build.environment]
   NODE_VERSION = "20"
-
+  GIT_SUBMODULE_STRATEGY = "recursive"
 
 [build]
-  command = "npm install && npm run build"
+  command = "npm run build"
+  publish = "dist"
 
-[build.environment]
-  GIT_SUBMODULE_STRATEGY = "recursive"
+[dev]
+  command = "npm run dev"
+  port = 3000
